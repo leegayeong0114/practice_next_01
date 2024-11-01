@@ -20,17 +20,18 @@ import { z } from 'zod'
 import { SignInSchema } from '@/utils/schemas/SignInSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils'
 import { requestToken } from '@/api/TokenApi'
-import {TokenResponse} from '@/types/Token'
-import axios from 'axios'
+import { TokenResponse } from '@/types/Token'
 import { useToast } from '@/hooks/use-toast'
+import { useRouter } from 'next/navigation'
 
 type SignInFormType = z.infer<typeof SignInSchema>
 
 export default function SignIn() {
 
     const { toast } = useToast()
+    const router = useRouter()
 
     const form = useForm<SignInFormType>({
         resolver: zodResolver(SignInSchema),
@@ -51,29 +52,33 @@ export default function SignIn() {
 
         if (result.status === 200) {
             const data = result.data as TokenResponse
-            console.log(data)
-            await axios
-                .post('/api/auth', data)
-                .then((res) => {
-                    console.log(res)
-                    if (res.status === 200) {
-                    }
+            await fetch('/api/auth', {
+                method: 'POST',
+                body: JSON.stringify(data),
+            })
+                .then(response => response.json())
+                .then(res => {
+                    router.push('/')
                 })
-                .catch((error) => {
-                    console.error('로그인 성공 후 토큰 저장 실패', error)
+                .catch(err => {
+                    toast({
+                        title: `⚠️ 로그인 실패 (토큰 저장 실패) ⚠️`,
+                        variant: 'destructive',
+                        duration: 2000,
+                    })
                 })
         } else {
             toast({
-                title: `🚨🚨 ${result.data.detail}`,
+                title: `⚠️ ${result.data.detail} ⚠️`,
                 variant: 'destructive',
-                duration: 10000,
+                duration: 2000,
             })
         }
     }
 
     return (
-        <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-            <Card className={cn("w-auto mt-auto min-w-96 max-w-96")}>
+        <div className="py-10 sm:py-20 items-center justify-items-center grid">
+            <Card className={cn("w-[430px] mt-auto")}>
                 <CardHeader>
                     <CardTitle>SignIn</CardTitle>
                     <CardDescription>아이디, 비번 찾기</CardDescription>
@@ -87,26 +92,26 @@ export default function SignIn() {
                             <FormField
                                 control={form.control}
                                 name="username"
-                                render={({ field }) => (
+                                render={({field}) => (
                                     <FormItem>
                                         <FormLabel>username</FormLabel>
                                         <FormControl>
                                             <Input placeholder="" {...field} />
                                         </FormControl>
-                                        <FormMessage />
+                                        <FormMessage/>
                                     </FormItem>
                                 )}
                             />
                             <FormField
                                 control={form.control}
                                 name="password"
-                                render={({ field }) => (
+                                render={({field}) => (
                                     <FormItem>
                                         <FormLabel>password</FormLabel>
                                         <FormControl>
                                             <Input type="text" {...field} />
                                         </FormControl>
-                                        <FormMessage />
+                                        <FormMessage/>
                                     </FormItem>
                                 )}
                             />

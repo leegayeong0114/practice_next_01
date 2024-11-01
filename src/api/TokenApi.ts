@@ -1,5 +1,4 @@
 import { axiosInstance } from '@/api/axiosInstance'
-import { NextResponse } from 'next/server'
 
 /**
  *  토큰 발급

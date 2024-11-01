@@ -50,8 +50,8 @@ export default function SignIn() {
     }
 
     return (
-        <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-            <Card className={cn("w-[500px] mt-auto")}>
+        <div className="py-10 sm:py-20 items-center justify-items-center grid">
+            <Card className={cn("w-[420px] mt-auto")}>
                 <CardHeader>
                     <CardTitle>SignUp</CardTitle>
                     <CardDescription>필수 정보를 입력하세요.</CardDescription>

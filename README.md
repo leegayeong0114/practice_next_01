@@ -34,4 +34,7 @@ https://velog.io/@eeeyooon/NextJS%EC%97%90%EC%84%9C-JWT-%EA%B4%80%EB%A6%AC%ED%95
 ## • shadcn/ui + zod + react-hook-form
 https://velog.io/@h0ngwon/Next.js-Shadcnui-zod-React-hook-form-%EC%9C%BC%EB%A1%9C-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%ED%8E%98%EC%9D%B4%EC%A7%80-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0
 
+## • NextApiResponse, NextApiReqest VS NextResponse, NextRequest
+https://daxjective.tistory.com/entry/NEXTjs-import-NextApiRequest-NextRequest-%EC%B0%A8%EC%9D%B4%EC%A0%90
+
 k8u_pyU2OB4yLZtv5_F7 / zero1234

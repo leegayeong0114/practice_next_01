@@ -4,6 +4,7 @@ export interface ResponseBoardListModel {
     catogories: any[]
     board: Board
     notice_writes: any[]
+    writes: Write[]
     total_count: number
     current_page: number
     prev_spt: number | null
@@ -13,6 +14,7 @@ export interface ResponseBoardListModel {
 export interface ResponseBoard extends Board {}
 
 export interface Board {
+    writes: any;
     bo_table: string
     gr_id: string
     bo_subject: string
@@ -57,4 +59,22 @@ export interface Comment {
     is_del: boolean
     is_secret: boolean
     is_secret_content: boolean
+}
+
+export interface Write {
+    wr_subjectstring: string
+    wr_content: string
+    wr_name: string
+    wr_password: string
+    wr_email: string
+    wr_homepage: string
+    wr_link1: string
+    wr_link2: string
+    wr_option: string
+    html: string
+    mail: string
+    secret: string
+    ca_name: string
+    notic: boolean
+    parent_id: number
 }
